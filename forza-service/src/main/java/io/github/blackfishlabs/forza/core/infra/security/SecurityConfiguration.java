@@ -66,6 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/console/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/company/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/company/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/salesman/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/user/**").permitAll()
 
                 // Global Authority to OPTIONS (permit all).
