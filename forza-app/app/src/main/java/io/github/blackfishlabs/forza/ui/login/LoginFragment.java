@@ -183,6 +183,7 @@ public class LoginFragment extends BaseFragment {
                     }
                 } else {
                     Timber.i("Server failure while syncing. %s", response.message());
+                    processLoginError(ValidationError.newError("Server failure while syncing"));
                 }
             }
 
