@@ -1,0 +1,37 @@
+<po-page-edit p-title="Novo Usuário (Gerente)" (p-save)="save()" (p-cancel)="cancel()">
+    <po-divider></po-divider>
+    <form [formGroup]="form">
+        <div class="po-row">
+            <po-input class="po-sm-6" name="firstName" formControlName="firstName" p-label="Primeiro Nome" p-clean
+                [p-disabled]="firstNameDisable">
+            </po-input>
+            <po-input class="po-sm-6" name="secondName" formControlName="lastName" p-label="Segundo Nome" p-clean
+                [p-disabled]="secondNameDisable">
+            </po-input>
+        </div>
+        <hr>
+        <div class="po-row">
+            <po-input class="po-md-12" id="email" name="email" formControlName="email" p-clean
+                p-icon="po-icon po-icon-mail" p-label="Email*" p-placeholder="Ex.: email@email.com" p-required
+                p-help="O email cadastrado será usado para o acesso ao sistema.">
+            </po-input>
+            <div class="po-row">
+                <po-password class="po-md-6" id="pass" (keyup)="checkPasswordStrength()" name="pass"
+                    formControlName="password" p-label="Senha*" p-placeholder="Ex.: Senha Secreta" p-required
+                    p-help="A senha cadastrada será usada para o acesso ao sistema.">
+                </po-password>
+                <po-password class="po-md-6" id="passCon" name="passCon" (keyup)="checkPass()"
+                    formControlName="passwordConfirm" p-label="Confirme sua Senha*" p-placeholder="Ex.: Senha Secreta"
+                    p-required p-help="Confirme sua senha digitando-a novamente.">
+                </po-password>
+            </div>
+            <div class="po-row">
+                <po-tag class="po-md-6" p-color="color-10" p-value="{{strongPassword}}">
+                </po-tag>
+                <po-tag class="po-md-6" p-color="color-11" p-value="{{labelPass}}">
+                </po-tag>
+            </div>
+        </div>
+    </form>
+</po-page-edit>
+<ngx-ui-loader></ngx-ui-loader>

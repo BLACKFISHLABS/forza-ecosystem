@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.login.LoginFragment">
+
+    <LinearLayout
+        style="@style/container"
+        android:background="@color/color_background_card"
+        android:gravity="top">
+
+        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardBackgroundColor="@color/md_white_1000"
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="@dimen/keyline_large">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TableRow>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/login_user_identity_24dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_layout_login_user_identity"
+                        style="@style/Widget.ForzaApp.FormInputLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_text_login_user_identity"
+                            style="@style/Widget.ForzaApp.EditableField"
+                            android:hint="@string/login_user_identity_hint"
+                            android:imeOptions="actionNext"
+                            android:inputType="numberSigned"
+                            android:maxLines="1">
+
+                            <requestFocus />
+                        </com.google.android.material.textfield.TextInputEditText>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/login_user_password_24dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_layout_login_user_password"
+                        style="@style/Widget.ForzaApp.FormInputLayout"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_text_login_user_password"
+                            style="@style/Widget.ForzaApp.EditableField"
+                            android:hint="@string/login_user_password_hint"
+                            android:imeActionId="@integer/login_action_login"
+                            android:imeActionLabel="@string/login_action"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/button_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:layout_span="2"
+                        android:text="@string/login_action"
+                        android:textColor="@color/color_primary" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            style="@style/container"
+            android:gravity="center">
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="96dp"-->
+            <!--                android:layout_height="96dp"-->
+            <!--                android:contentDescription="@string/order_list_no_orders"-->
+            <!--                app:srcCompat="@drawable/forza" />-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="32sp"
+                android:fontFamily="sans-serif-light" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/keyline_large"
+                android:textSize="22sp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/blackfishlabs_website" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

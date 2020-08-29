@@ -1,0 +1,82 @@
+<po-page-default [p-title]="title">
+  <po-tabs>
+    <po-tab p-label="Dados" p-active="true">
+      <po-widget class="po-lg-12" p-title="Nome">
+        <div class="po-font-subtitle">{{obj.nome}}</div>
+      </po-widget>
+      <po-widget class="po-lg-12" p-title="Nome Fantasia">
+        <div class="po-font-subtitle">{{obj.nomeFantasia}}</div>
+      </po-widget>
+      <po-widget class="po-lg-4" p-title="CPF/CNPJ">
+        <div class="po-font-subtitle">{{obj.cpfCnpj}}</div>
+      </po-widget>
+      <po-widget class="po-lg-4" p-title="IE">
+        <div class="po-font-subtitle">{{obj.ie}}</div>
+      </po-widget>
+      <po-widget class="po-lg-4" p-title="Tipo">
+        <div class="po-font-subtitle">{{obj.auxTypePerson}}</div>
+      </po-widget>
+
+      <div class="po-row po-mt-5">
+        <po-button class="po-md-2" p-type="default" p-icon="po-icon-arrow-left" p-label="Voltar" (p-click)="cancel()">
+        </po-button>
+        <div class="po-md-8"></div>
+        <po-button class="po-md-2" p-type="danger" p-icon="po-icon-delete" p-label="Excluir Registro"
+          (p-click)="delete()">
+        </po-button>
+      </div>
+    </po-tab>
+
+    <po-tab p-label="Contato">
+      <po-widget class="po-lg-12" p-title="Contato">
+        <div class="po-font-subtitle">{{obj.contato}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Email">
+        <div class="po-font-subtitle">{{obj.email}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Telefone">
+        <div class="po-font-subtitle">{{obj.telefone}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Telefone">
+        <div class="po-font-subtitle">{{obj.telefone2}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Comprador">
+        <div class="po-font-subtitle">{{obj.comprador}}</div>
+      </po-widget>
+    </po-tab>
+
+    <po-tab p-label="Endereço">
+      <po-widget class="po-lg-12" p-title="Endereço">
+        <div class="po-font-subtitle">{{obj.endereco}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="CEP">
+        <div class="po-font-subtitle">{{obj.cep}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Bairro">
+        <div class="po-font-subtitle">{{obj.bairro}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Número">
+        <div class="po-font-subtitle">{{obj.numero}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Complemento">
+        <div class="po-font-subtitle">{{obj.complemento}}</div>
+      </po-widget>
+      <po-widget class="po-lg-9" p-title="Cidade">
+        <div class="po-font-subtitle">{{obj.auxCity}}</div>
+      </po-widget>
+    </po-tab>
+
+    <po-tab p-label="Informações">
+      <po-widget class="po-lg-6" p-title="Ativo">
+        <div class="po-font-subtitle">{{obj.auxAtivo}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Ultima Alteração">
+        <div class="po-font-subtitle">{{obj.ultimaAlteracao}}</div>
+      </po-widget>
+    </po-tab>
+  </po-tabs>
+
+  <div class="po-mb-5">
+    <po-divider></po-divider>
+  </div>
+</po-page-default>

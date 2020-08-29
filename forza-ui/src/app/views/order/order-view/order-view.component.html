@@ -1,0 +1,71 @@
+<po-page-default [p-title]="title">
+  <po-tabs>
+    <po-tab p-label="Dados" p-active="true">
+      <po-widget class="po-lg-3" p-title="Tipo">
+        <div class="po-font-subtitle">{{obj.auxType}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Status">
+        <div class="po-font-subtitle">{{obj.auxStatus}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Forma de Pagamento">
+        <div class="po-font-subtitle">{{obj.payment}}</div>
+      </po-widget>
+      <po-widget class="po-lg-3" p-title="Data de Emissão">
+        <div class="po-font-subtitle">{{obj.dtEmissao}}</div>
+      </po-widget>
+
+      <po-widget class="po-lg-6" p-title="Cliente">
+        <div class="po-font-subtitle">{{obj.customer}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Vendedor">
+        <div class="po-font-subtitle">{{obj.auxVendedor}}</div>
+      </po-widget>
+
+      <po-widget class="po-lg-6" p-title="Resumo">
+        <div class="po-font-subtitle">{{obj.resumo}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Tabela de Preço">
+        <div class="po-font-subtitle">ID: {{obj.idTabela}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Desconto">
+        <div class="po-font-subtitle">{{obj.desconto | currency: 'BRL'}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Percentual de Desconto">
+        <div class="po-font-subtitle">{{obj.perDesc | percent}}</div>
+      </po-widget>
+
+      <po-widget class="po-lg-12" p-title="Total da Venda">
+        <div class="po-font-subtitle">{{obj.total | currency: 'BRL'}}</div>
+      </po-widget>
+
+      <div class="po-row po-mt-5">
+        <po-button class="po-md-2" p-type="primary" p-icon="po-icon-arrow-left" p-label="Voltar" (p-click)="cancel()">
+        </po-button>
+        <div class="po-md-8"></div>
+        <po-button class="po-md-2" p-type="danger" p-icon="po-icon-delete" p-label="Excluir Registro"
+          (p-click)="delete()">
+        </po-button>
+      </div>
+    </po-tab>
+
+    <po-tab p-label="Itens">
+      <po-widget class="po-md-12 po-mb-5" p-title="">
+        <po-table class="po-md-12" p-sort="true" p-striped="true" [p-columns]="columns" [p-items]="itens">
+        </po-table>
+      </po-widget>
+    </po-tab>
+
+    <po-tab p-label="Informações">
+      <po-widget class="po-lg-12" p-title="Ultima Alteração">
+        <div class="po-font-subtitle">{{obj.ultimaAlteracao}}</div>
+      </po-widget>
+      <po-widget class="po-lg-12" p-title="Observação">
+        <div class="po-font-subtitle">{{obj.observacao}}</div>
+      </po-widget>
+    </po-tab>
+  </po-tabs>
+
+  <div class="po-mb-5">
+    <po-divider></po-divider>
+  </div>
+</po-page-default>

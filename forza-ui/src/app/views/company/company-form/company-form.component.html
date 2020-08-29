@@ -1,0 +1,65 @@
+<po-page-edit [p-title]="title" (p-save)="save()" (p-cancel)="cancel()" [p-disable-submit]="validate()">
+    <hr>
+    <form [formGroup]="form">
+        <div class="po-row">
+            <po-input id="document" class="po-md-3" name="cnpj" p-mask="99.999.999/9999-99" formControlName="cnpj"
+                p-label="CNPJ" p-disabled>
+            </po-input>
+
+            <po-input id="fantasyName" class="po-md-5" name="fantasyName" formControlName="fantasyName"
+                p-label="Nome Fantasia*" p-clean>
+            </po-input>
+
+            <po-input id="name" class="po-md-4" name="name" formControlName="name" p-label="Razão Social*" p-clean>
+            </po-input>
+        </div>
+
+        <po-tabs>
+            <po-tab p-label="Endereço" p-active="true">
+                <div class="po-row">
+                    <po-input class="po-md-3" name="cep" formControlName="cep" p-icon="po-icon po-icon-world"
+                        p-mask="99-999.999" p-clean p-label="CEP*">
+                    </po-input>
+
+                    <po-button style="margin-top: 32px;" class="po-sm-1" p-label="Buscar CEP" p-type="primary"
+                        (click)="changeCep()">
+                    </po-button>
+
+                    <po-input id="street" class="po-md-4" name="street" formControlName="street" p-label="Endereço*"
+                        p-clean>
+                    </po-input>
+
+                    <po-input id="neighborhood" class="po-md-4" name="neighborhood" formControlName="neighborhood"
+                        p-label="Bairro*" p-clean>
+                    </po-input>
+                </div>
+            </po-tab>
+        </po-tabs>
+
+        <div class="po-row">
+            <po-input id="complement" class="po-md-4" name="complement" formControlName="complement"
+                p-label="Complemento*" p-clean>
+            </po-input>
+            <po-input id="number" class="po-md-2" name="number" formControlName="number" p-label="Número*" p-clean>
+            </po-input>
+            <po-input id="city" class="po-md-4" name="city" formControlName="city" p-label="Cidade*" p-clean p-disabled>
+            </po-input>
+            <po-input id="state" class="po-md-2" name="state" formControlName="state" p-label="Estado*" p-clean
+                p-disabled>
+            </po-input>
+        </div>
+
+        <po-tabs>
+            <po-tab p-label="Contato" p-active="true">
+                <div class="po-row">
+                    <po-input id="cantact" class="po-md-6" name="cantact" formControlName="cantact" p-label="Contato*"
+                        p-clean>
+                    </po-input>
+                    <po-input id="phone" class="po-md-6" name="phone" formControlName="phone" p-label="Telefone*"
+                        p-clean>
+                    </po-input>
+                </div>
+            </po-tab>
+        </po-tabs>
+    </form>
+</po-page-edit>

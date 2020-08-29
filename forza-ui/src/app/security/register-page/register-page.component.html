@@ -1,0 +1,51 @@
+<po-page-edit p-title="Cadastro de Nova Empresa" (p-save)="save()" (p-cancel)="cancel()" [p-literals]="customLiterals">
+    <po-divider></po-divider>
+    <div class="po-row">
+        <po-widget class="po-md-6 po-mb-5">
+            <div class="po-font-title po-text-left">
+                Olá!
+                <br>
+                <hr>
+                Preencha todos os campos solicitados para o processo de cadastramento da sua empresa e usuário
+                administrador.
+                <hr>
+                Plano Único: R$ 199,90/mensal
+                <br>
+                - Sem Limites de Vendedores
+                <br>
+                - Suporte Online
+            </div>
+        </po-widget>
+        <form [formGroup]="form" class="po-md-6">
+            <div class="po-row">
+                <po-input id="companyName" class="po-md-6" name="companyName" formControlName="companyName"
+                    p-label="Nome/Contato*" p-clean>
+                </po-input>
+                <po-input id="phone" class="po-md-6" name="phone" p-mask="(99) 9?9999-9999" formControlName="phone"
+                    p-label="Telefone*" p-clean>
+                </po-input>
+                <po-input id="document" class="po-md-6" name="document" p-mask="99.999.999/9999-99"
+                    formControlName="document" p-label="CNPJ*" p-clean>
+                </po-input>
+                <po-button id="getCNPJ" class="po-md-3" name="getCNPJ" p-label="Buscar CNPJ" style="margin-top: 32px;"
+                    (click)="getCNPJ()" p-icon="po-icon-search" p-type="primary" [p-loading]="loadingCNPJ">
+                </po-button>
+            </div>
+        </form>
+
+    </div>
+
+    <po-divider></po-divider>
+    <div class="po-row" #CNPJInfo id="CNPJInfo">
+        <po-widget p-no-shadow="true" class="po-lg-12 po-mb-12">
+            <div class="po-font-subtitle po-text-left">{{ fantasyName }}</div>
+        </po-widget>
+        <po-widget p-no-shadow="true" class="po-lg-12 po-mb-12">
+            <div class="po-font-subtitle po-text-left">{{ street }}</div>
+        </po-widget>
+        <po-widget p-no-shadow="true" class="po-lg-12 po-mb-12">
+            <div class="po-font-subtitle po-text-left">{{ city }}</div>
+        </po-widget>
+    </div>
+</po-page-edit>
+<ngx-ui-loader></ngx-ui-loader>

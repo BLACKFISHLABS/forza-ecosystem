@@ -1,0 +1,30 @@
+<po-page-default [p-title]="title">
+  <po-tabs>
+    <po-tab p-label="Dados" p-active="true">
+      <po-widget class="po-lg-6" p-title="Emissão">
+        <div class="po-font-subtitle">{{obj.emissao}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Status">
+        <div class="po-font-subtitle">{{obj.auxStatus}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Vendedor">
+        <div class="po-font-subtitle">{{obj.auxVendedor}}</div>
+      </po-widget>
+      <po-widget class="po-lg-6" p-title="Veículo">
+        <div class="po-font-subtitle">{{obj.auxVehicle}}</div>
+      </po-widget>
+    </po-tab>
+  </po-tabs>
+
+  <div class="po-row po-mt-5">
+    <po-button class="po-md-2" p-type="primary" p-icon="po-icon-arrow-left" p-label="Voltar" (p-click)="cancel()">
+    </po-button>
+    <div class="po-md-8"></div>
+    <po-button class="po-md-2" p-type="danger" p-icon="po-icon-delete" p-label="Excluir Registro" (p-click)="delete()">
+    </po-button>
+  </div>
+
+  <div class="po-mt-5">
+    <po-divider></po-divider>
+  </div>
+</po-page-default>

@@ -1,0 +1,16 @@
+<po-page-edit [p-title]="title" (p-save)="save()" (p-cancel)="cancel()" [p-disable-submit]="validate()">
+    <hr>
+    <form [formGroup]="form">
+        <div class="po-row">
+            <po-input id="description" class="po-md-6" name="description" formControlName="description"
+                p-label="Descrição" p-clean>
+            </po-input>
+            <po-input id="plate" class="po-md-3" name="plate" formControlName="plate" p-label="Placa*" p-clean>
+            </po-input>
+            <po-combo class="po-md-3" name="driveSalesman" p-label="Motorista*" p-clean p-icon="po-icon-search" p-sort
+                formControlName="driveSalesman" p-filter-minlength="1" [p-filter-service]="comboSalesmanService"
+                (p-change)="changeComboSalesman()" p-placeholder="Selecione ou Digite" p-help="">
+            </po-combo>
+        </div>
+    </form>
+</po-page-edit>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="blackfish">
+        <createTable tableName="APP_PHONE">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone_number" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone_type" type="varchar(10)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="blackfish">
+        <insert tableName="app_phone">
+            <column name="id" value="1"/>
+            <column name="created_at" value="now()"/>
+            <column name="phone_number" value="(44)9.99742-4957"/>
+            <column name="phone_type" value="CELL_PHONE"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

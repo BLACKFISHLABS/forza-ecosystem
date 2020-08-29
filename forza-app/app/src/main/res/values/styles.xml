@@ -1,0 +1,131 @@
+<resources>
+
+    <style name="container">
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Widget.ForzaApp" parent="@android:style/Widget" />
+
+    <style name="Widget.ForzaApp.FormInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="Widget.ForzaApp.EditableField" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:selectAllOnFocus">true</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="Widget.ForzaApp.NonEditableField" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:inputType">none</item>
+        <item name="android:translationY">4dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">top|left</item>
+    </style>
+
+    <style name="Widget.ForzaApp.RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">@dimen/keyline_medium</item>
+        <item name="android:paddingBottom">@dimen/keyline_medium</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:scrollbarStyle">insideOverlay</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+    </style>
+
+    <style name="Widget.ForzaApp.FloatingActionButton" parent="@style/Widget.Design.FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">6dp</item>
+        <item name="pressedTranslationZ">12dp</item>
+        <item name="rippleColor">@android:color/white</item>
+    </style>
+
+    <style name="Widget.ForzaApp.CardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="android:id">@id/card_view_all_item_card</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/keyline_medium</item>
+        <item name="android:layout_marginRight">@dimen/keyline_medium</item>
+        <item name="android:layout_marginBottom">@dimen/keyline_medium</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">@drawable/item_selector</item>
+        <item name="contentPadding">@dimen/keyline_large</item>
+        <item name="cardBackgroundColor">@color/color_background_card</item>
+    </style>
+
+    <style name="Widget.ForzaApp.MultilineEditableField" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">top|left</item>
+        <item name="android:inputType">textMultiLine|textCapSentences</item>
+        <item name="android:lines">4</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
+    <style name="Widget.ForzaApp.MultilineNonEditableField" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">top|left</item>
+        <item name="android:inputType">textMultiLine|textCapSentences</item>
+        <item name="android:lines">4</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:translationY">4dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+    </style>
+
+    <style name="Widget.ForzaApp.Spinner" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="ms_multiline">false</item>
+        <item name="ms_enableFloatingLabel">true</item>
+        <item name="ms_nbErrorLines">2</item>
+    </style>
+
+    <style name="Widget.ForzaApp.RadialTimePickerDialog" parent="BetterPickersRadialTimePickerDialog.PrimaryColor">
+        <item name="bpHeaderBackgroundColor">?attr/colorAccent</item>
+        <item name="bpBodySelectedTextColor">?attr/colorAccent</item>
+        <item name="bpButtonsTextColor">?attr/colorAccent</item>
+        <item name="bpRadialTextColor">?attr/colorAccent</item>
+        <item name="bpRadialPointerColor">?attr/colorAccent</item>
+        <item name="bpAmPmCircleColor">?attr/colorAccent</item>
+    </style>
+
+    <style name="ContainerLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+</resources>

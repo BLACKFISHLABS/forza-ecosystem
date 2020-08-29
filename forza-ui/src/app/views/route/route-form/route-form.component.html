@@ -1,0 +1,18 @@
+<po-page-edit [p-title]="title" (p-save)="save()" (p-cancel)="cancel()" [p-disable-submit]="validate()">
+    <form [formGroup]="form">
+        <div class="po-row">
+            <po-input id="description" class="po-md-12" name="description" formControlName="description"
+                p-label="Descrição" p-clean>
+            </po-input>
+        </div>
+        <div class="po-row">
+            <po-input id="plate" class="po-md-12" name="plate" formControlName="plate" p-label="Placa" p-clean>
+            </po-input>
+        </div>
+        <div class="po-row">
+            <po-textarea class="po-sm-12" name="driveSalesman" p-disabled formControlName="driveSalesman"
+                p-label="Condutor/Vendedor" p-placeholder="">
+            </po-textarea>
+        </div>
+    </form>
+</po-page-edit>

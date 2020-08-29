@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="blackfish">
+        <createTable tableName="APP_USER_PERMISSION">
+            <column name="permission_id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="blackfish">
+        <addForeignKeyConstraint baseColumnNames="permission_id"
+                                 baseTableName="APP_USER_PERMISSION" constraintName="FK_USER_PERMISSION_PERMISSION"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT" referencedColumnNames="ID"
+                                 referencedTableName="APP_PERMISSION"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="APP_USER_PERMISSION" constraintName="FK_USER_PERMISSION_USER"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT" referencedColumnNames="ID"
+                                 referencedTableName="APP_USER"/>
+    </changeSet>
+
+    <changeSet id="3" author="blackfish">
+        <insert tableName="APP_USER_PERMISSION">
+            <column name="permission_id" value="1"/>
+            <column name="user_id" value="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

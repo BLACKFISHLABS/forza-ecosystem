@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/keyline_large"
+    android:paddingRight="@dimen/keyline_large"
+    android:layout_marginBottom="@dimen/keyline_medium">
+
+    <Button
+        android:id="@id/button_all_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_retry"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_view_importation_company_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/button_all_retry"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="@string/importation_company_name_example" />
+
+</RelativeLayout>

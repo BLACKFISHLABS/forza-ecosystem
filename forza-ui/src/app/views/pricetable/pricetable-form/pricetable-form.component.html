@@ -1,0 +1,28 @@
+<po-page-edit [p-title]="title" (p-cancel)="cancel()">
+  <hr>
+  <form [formGroup]="form">
+    <po-tabs>
+      <po-tab p-label="Dados" p-active="true">
+        <po-input id="ean" class="po-md-12" name="ean" formControlName="ean" p-label="EAN" p-clean>
+        </po-input>
+        <po-input id="description" class="po-md-12" name="description" formControlName="description" p-label="Descrição"
+          p-clean>
+        </po-input>
+        <po-input id="unit" class="po-md-12" name="unit" formControlName="unit" p-label="Unidade" p-clean>
+        </po-input>
+        <po-input id="group" class="po-md-12" name="group" formControlName="group" p-label="Grupo" p-clean>
+        </po-input>
+      </po-tab>
+      <po-tab p-label="Informações" p-active="true">
+        <po-input id="note" class="po-md-12" name="note" formControlName="note" p-label="Observação" p-clean>
+        </po-input>
+        <po-input id="status" class="po-md-12" name="status" formControlName="status" p-label="Ativo" p-clean>
+        </po-input>
+        <po-input id="lastChange" class="po-md-12" name="lastChange" formControlName="lastChange"
+          p-label="Última Alteração" p-clean>
+        </po-input>
+      </po-tab>
+    </po-tabs>
+  </form>
+  <hr>
+</po-page-edit>

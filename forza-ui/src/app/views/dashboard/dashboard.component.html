@@ -1,0 +1,53 @@
+<po-page-default>
+    <h1 class="po-page-header-title">Painel de Informações</h1>
+    <hr>
+    <div class="po-row">
+        <po-widget class="po-lg-12 po-mb-1">
+            <div class="po-font-title po-text-left">{{ myDate | date:'fullDate' }}</div>
+        </po-widget>
+    </div>
+    <div id="dashboard">
+        <div class="po-row">
+            <po-widget class="po-lg-3 po-mb-1" (p-click)="openSales()" p-title="VENDAS REALIZADAS">
+                <div class="row">
+                    <div class="po-md-3">
+                        <span class="po-icon po-icon-sale" style="font-size: 48px;"></span>
+                    </div>
+                    <div class="po-md-9">
+                        <div class="po-font-title po-text-right">{{sales || 0}}</div>
+                    </div>
+                </div>
+            </po-widget>
+            <po-widget class="po-lg-3 po-mb-1" (p-click)="openProducts()" p-title="PRODUTOS">
+                <div class="row">
+                    <div class="po-md-3">
+                        <span class="po-icon po-icon-pushcart" style="font-size: 48px;"></span>
+                    </div>
+                    <div class="po-md-9">
+                        <div class="po-font-title po-text-right">{{products || 0}}</div>
+                    </div>
+                </div>
+            </po-widget>
+            <po-widget class="po-lg-3 po-mb-1" (p-click)="openSalesMan()" p-title="VENDEDORES">
+                <div class="row">
+                    <div class="po-md-3">
+                        <span class="po-icon po-icon-device-smartphone" style="font-size: 48px;"></span>
+                    </div>
+                    <div class="po-md-9">
+                        <div class="po-font-title po-text-right">{{salesman || 0}}</div>
+                    </div>
+                </div>
+            </po-widget>
+            <po-widget class="po-lg-3 po-mb-1" (p-click)="openCustomers()" p-title="CLIENTES">
+                <div class="row">
+                    <div class="po-md-3">
+                        <span class="po-icon po-icon-users" style="font-size: 48px;"></span>
+                    </div>
+                    <div class="po-md-9">
+                        <div class="po-font-title po-text-right">{{customers || 0}}</div>
+                    </div>
+                </div>
+            </po-widget>
+        </div>
+    </div>
+</po-page-default>

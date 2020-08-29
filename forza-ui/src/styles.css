@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+
+.po-toaster {
+	width: 30%;
+}
+
+.po-page-background-footer-select .po-select-button,
+.po-page-background-footer-select .po-select-container.po-select-show>.po-select-button {
+	visibility: hidden;
+}
+
+.po-tab-button-label {
+	text-align: left;
+	margin-left: 3px;
+}
+
+.po-icon-ok::before {
+	color: white;
+}
+
+.po-page-login-register-link a {
+    text-transform: uppercase;
+}
+
+.po-upload-progress-container .po-progress-bar {
+	display: none;
+}
+
+.po-upload-progress-container .po-progress-error {
+	display: none;
+}
+
+.bgSuccess .po-widget{
+    background-color: #28a745;
+}
+
+.bgNormal .po-widget{
+    background-color: #dc3545;
+}
+
+.bgWarn .po-widget{
+    background-color: #fff3cd;
+}
+
+.bgAtual .po-widget{
+    background-color: #17a2b8;
+}
+
+.div-bem .po-widget-action{
+    color: white;
+}
+
+.div-bem .po-widget-action:hover{
+    color: white;
+}
+
+.div-bem .po-widget-body{
+    color: white;
+}
+
+/* SCROLL */
+.po-page-content {
+    overflow-y: visible;
+}
+
+.po-page {
+	overflow: auto;
+}

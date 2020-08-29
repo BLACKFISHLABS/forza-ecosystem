@@ -1,0 +1,52 @@
+<po-page-default [p-title]="title">
+  <po-widget class="po-lg-12" p-title="Nome Fantasia">
+    <div class="po-font-subtitle">{{obj.nome}}</div>
+  </po-widget>
+  <po-widget class="po-lg-12" p-title="Razão Social">
+    <div class="po-font-subtitle">{{obj.companyName}}</div>
+  </po-widget>
+  <po-widget class="po-lg-6" p-title="CNPJ">
+    <div class="po-font-subtitle">{{obj.cnpj}}</div>
+  </po-widget>
+
+  <po-widget class="po-lg-6" p-title="Endereço">
+    <div class="po-font-subtitle">{{obj.auxStreet}}</div>
+  </po-widget>
+  <po-widget class="po-lg-6" p-title="Bairro">
+    <div class="po-font-subtitle">{{obj.auxNeighborhood}}</div>
+  </po-widget>
+  <po-widget class="po-lg-4" p-title="Complemento">
+    <div class="po-font-subtitle">{{obj.auxcomplement}}</div>
+  </po-widget>
+  <po-widget class="po-lg-2" p-title="Número">
+    <div class="po-font-subtitle">{{obj.auxNumber}}</div>
+  </po-widget>
+  <po-widget class="po-lg-4" p-title="CEP">
+    <div class="po-font-subtitle">{{obj.auxCep}}</div>
+  </po-widget>
+  <po-widget class="po-lg-6" p-title="Cidade">
+    <div class="po-font-subtitle">{{obj.auxCity}}</div>
+  </po-widget>
+  <po-widget class="po-lg-2" p-title="Estado">
+    <div class="po-font-subtitle">{{obj.auxEstado}}</div>
+  </po-widget>
+
+  <po-widget class="po-lg-12" p-title="Contato">
+    <div class="po-font-subtitle">{{obj.auxPhoneName}}</div>
+  </po-widget>
+  <po-widget class="po-lg-12" p-title="Telefone">
+    <div class="po-font-subtitle">{{obj.auxPhoneNumber}}</div>
+  </po-widget>
+
+  <div class="po-row po-mt-5">
+    <po-button class="po-md-2" p-type="default" p-icon="po-icon-arrow-left" p-label="Voltar" (p-click)="cancel()">
+    </po-button>
+    <po-button class="po-md-2" p-type="primary" p-icon="po-icon-edit" p-label="Editar" (p-click)="edit()">
+    </po-button>
+    <div class="po-md-10"></div>
+  </div>
+
+  <div class="po-mb-5">
+    <po-divider></po-divider>
+  </div>
+</po-page-default>

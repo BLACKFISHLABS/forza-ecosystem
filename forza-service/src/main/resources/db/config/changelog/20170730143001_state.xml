@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="blackfish">
+        <createTable tableName="APP_STATE">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="code" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="acronym" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="blackfish" id="2" objectQuotingStrategy="LEGACY">
+        <sql splitStatements="false" stripComments="false">
+
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (12, now(), 12, 'Acre', 'AC');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (27, now(), 27, 'Alagoas', 'AL');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (16, now(), 16, 'Amapá', 'AP');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (13, now(), 13, 'Amazonas', 'AM');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (29, now(), 29, 'Bahia', 'BA');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (23, now(), 23, 'Ceará', 'CE');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (53, now(), 53, 'Distrito Federal',
+            'DF');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (32, now(), 32, 'Espírito Santo', 'ES');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (52, now(), 52, 'Goiás', 'GO');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (21, now(), 21, 'Maranhão', 'MA');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (51, now(), 51, 'Mato Grosso', 'MT');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (50, now(), 50, 'Mato Grosso do Sul',
+            'MS');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (31, now(), 31, 'Minas Gerais', 'MG');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (15, now(), 15, 'Pará', 'PA');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (25, now(), 25, 'Paraíba', 'PB');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (41, now(), 41, 'Paraná', 'PR');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (26, now(), 26, 'Pernambuco', 'PE');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (22, now(), 22, 'Piauí', 'PI');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (33, now(), 33, 'Rio de Janeiro', 'RJ');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (24, now(), 24, 'Rio Grande do Norte',
+            'RN');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (43, now(), 43, 'Rio Grande do Sul',
+            'RS');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (11, now(), 11, 'Rondônia', 'RO');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (14, now(), 14, 'Roraima', 'RR');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (42, now(), 42, 'Santa Catarina', 'SC');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (35, now(), 35, 'São Paulo', 'SP');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (28, now(), 28, 'Sergipe', 'SE');
+            INSERT INTO APP_STATE (id, created_at, code, state, acronym) values (17, now(), 17, 'Tocantins', 'TO');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

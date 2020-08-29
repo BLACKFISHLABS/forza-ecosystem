@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.importation.ImportResumeActivity"
+    tools:showIn="@layout/activity_import_resume">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/keyline_large"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_resume_code"
+                style="@style/Widget.ForzaApp.FormInputLayout"
+                android:layout_column="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_resume_code"
+                    style="@style/Widget.ForzaApp.EditableField"
+                    android:hint="@string/all_resume_code" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/text_view_code_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginTop="@dimen/keyline_xlarge"
+                android:layout_marginBottom="@dimen/keyline_xlarge"
+                android:gravity="center_horizontal"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/no_resume_loaded"
+                android:textColor="@color/color_primary_dark"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/button_sync_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                android:layout_column="1"
+                android:text="@string/sync_resume_code"
+                tools:visibility="visible" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/button_finish_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                android:layout_column="1"
+                android:text="@string/finish_resume"
+                tools:visibility="visible" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/button_cancel_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                android:layout_column="1"
+                android:text="@string/cancel_resume"
+                tools:visibility="visible" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</androidx.core.widget.NestedScrollView>

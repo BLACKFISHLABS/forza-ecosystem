@@ -1,0 +1,18 @@
+<po-page-edit [p-title]="title" (p-save)="save()" (p-cancel)="cancel()" [p-disable-submit]="validate()">
+    <hr>
+    <form [formGroup]="form">
+        <div class="po-row">
+            <po-input id="code" class="po-md-2" name="code" formControlName="code" p-label="Código Interno"
+                p-help="Exemplo: AV" p-clean>
+            </po-input>
+            <po-input id="description" class="po-md-6" name="description" formControlName="description"
+                p-label="Descrição" p-help="Exemplo: A Vista" p-clean>
+            </po-input>
+            <po-decimal class="po-md-4" id="discount" formControlName="discount" p-decimals-length="2"
+                p-label="(%) Desconto" p-thousand-maxlength="3" p-help="Exemplo: 17,00">
+            </po-decimal>
+        </div>
+        <po-checkbox id="status" class="po-md-12" name="status" formControlName="status" p-label="Ativo"> </po-checkbox>
+    </form>
+    
+</po-page-edit>

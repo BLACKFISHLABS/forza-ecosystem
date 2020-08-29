@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="db/config/changelog/20170730143001_state.xml"/>
+    <include file="db/config/changelog/20170730153001_city.xml"/>
+    <include file="db/config/changelog/20170730160001_address.xml"/>
+    <include file="db/config/changelog/20170730163001_phone.xml"/>
+    <include file="db/config/changelog/20170730170001_contact.xml"/>
+    <include file="db/config/changelog/20170730173001_company.xml"/>
+    <include file="db/config/changelog/20170730190100_permission.xml"/>
+    <include file="db/config/changelog/20170730193002_user.xml"/>
+    <include file="db/config/changelog/20170730200102_user_permission.xml"/>
+    <include file="db/config/changelog/20180816120401_sequence_hibernate.xml"/>
+    <include file="db/config/changelog/20180821155001_salesman.xml"/>
+    <include file="db/config/changelog/20180821155101_salesman_company.xml"/>
+    <include file="db/config/changelog/20180828151101_payment.xml"/>
+    <include file="db/config/changelog/20180829140701_product.xml"/>
+    <include file="db/config/changelog/20180911100901_pricetable.xml"/>
+    <include file="db/config/changelog/20180926101401_customer.xml"/>
+    <include file="db/config/changelog/20181001100901_order.xml"/>
+    <include file="db/config/changelog/20181130093801_vehicle.xml"/>
+    <include file="db/config/changelog/20190116132001_route.xml"/>
+    <include file="db/config/changelog/20190117170401_charge.xml"/>
+    <include file="db/config/changelog/20191012140901_add_customer_ie_buyer.xml"/>
+
+</databaseChangeLog>

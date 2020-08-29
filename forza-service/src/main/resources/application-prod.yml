@@ -1,0 +1,37 @@
+# DATABASE
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/forza;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/config/master.xml
+    url: jdbc:h2:file:./data/forza;DB_CLOSE_ON_EXIT=FALSE
+    user: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: true
+
+# SECURITY
+security:
+  basic:
+    enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include=*:

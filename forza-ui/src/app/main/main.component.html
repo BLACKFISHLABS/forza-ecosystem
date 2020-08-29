@@ -1,0 +1,16 @@
+<div class="po-wrapper">
+    <po-toolbar #poToolbar id="poToolbar" [p-profile]="profile" [p-profile-actions]="profileActions"
+        p-notification-actions="notificationActions" p-notification-number="notificationNumber"
+        p-show-notification="showNotification" p-title="FORZA - FORÇA DE VENDAS">
+    </po-toolbar>
+    <po-menu #poMenu id="poMenu" class="color-primary-dark" p-expanded p-toggle p-filter [p-menus]="menus">
+        <div *p-menu-header-template class="po-p-2 po-font-subtitle sample-menu-header-text-color">
+            <p style="color: white;">OLÁ</p>
+            <p style="color: white;">
+                <b>{{userLogged.name | uppercase}}</b>
+            </p>
+        </div>
+    </po-menu>
+    <router-outlet></router-outlet>
+    <ngx-ui-loader></ngx-ui-loader>
+</div>

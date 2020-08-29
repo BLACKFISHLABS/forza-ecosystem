@@ -1,0 +1,25 @@
+<po-page-default>
+    <po-breadcrumb [p-items]="breadcrumbItems"></po-breadcrumb>
+    <br>
+    <form [formGroup]="form">
+        <div class="po-row">
+            <po-input id="description" class="po-md-10" name="description" formControlName="description"
+                p-label="Resumo" p-clean>
+            </po-input>
+
+            <po-button class="po-md-2" id="btn" style="margin-top: 32px;" p-label="Pesquisar" (click)="setPage()"
+                p-icon="po-icon-search">
+            </po-button>
+        </div>
+    </form>
+
+    <po-widget class="po-md-12 po-mb-5" p-title="">
+        <po-table p-hide-select-all="true" p-sort="true" p-striped="true" [p-columns]="columns" [p-actions]="actions"
+            [p-items]="orders">
+        </po-table>
+    </po-widget>
+
+    <div class="po-mt-5">
+        <po-divider></po-divider>
+    </div>
+</po-page-default>

@@ -1,0 +1,20 @@
+# APPLICATION
+spring:
+  application:
+    name: Forza
+    description: Projeto desenvolvido por BLACKFISH LABS.
+    version: @project.version@
+  profiles:
+    active: prod
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        id:
+          new_generator_mappings: true
+
+# SERVER
+server:
+  contextPath: /
+  port: 5000

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="blackfish" id="1">
+        <createSequence catalogName="cat"
+                        cycle="true"
+                        incrementBy="1"
+                        schemaName="public"
+                        sequenceName="hibernate_sequence"
+                        startValue="10"/>
+    </changeSet>
+
+</databaseChangeLog>

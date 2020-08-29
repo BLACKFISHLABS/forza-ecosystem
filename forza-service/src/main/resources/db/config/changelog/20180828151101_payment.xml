@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="blackfish">
+        <createTable tableName="APP_PAYMENT">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="code" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount_percentage" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_change" type="date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="blackfish">
+        <insert tableName="APP_PAYMENT">
+            <column name="id" value="1"/>
+            <column name="created_at" value="now()"/>
+            <column name="code" value="AV"/>
+            <column name="description" value="A VISTA"/>
+            <column name="discount_percentage" value="0"/>
+            <column name="active" value="true"/>
+            <column name="last_change" value="now()"/>
+            <column name="company_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="blackfish">
+        <insert tableName="APP_PAYMENT">
+            <column name="id" value="2"/>
+            <column name="created_at" value="now()"/>
+            <column name="code" value="30D"/>
+            <column name="description" value="30 DIAS"/>
+            <column name="discount_percentage" value="0"/>
+            <column name="active" value="true"/>
+            <column name="last_change" value="now()"/>
+            <column name="company_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="4" author="blackfish">
+        <insert tableName="APP_PAYMENT">
+            <column name="id" value="3"/>
+            <column name="created_at" value="now()"/>
+            <column name="code" value="60D"/>
+            <column name="description" value="60 DIAS"/>
+            <column name="discount_percentage" value="0"/>
+            <column name="active" value="true"/>
+            <column name="last_change" value="now()"/>
+            <column name="company_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="5" author="blackfish">
+        <insert tableName="APP_PAYMENT">
+            <column name="id" value="4"/>
+            <column name="created_at" value="now()"/>
+            <column name="code" value="90D"/>
+            <column name="description" value="90 DIAS"/>
+            <column name="discount_percentage" value="0"/>
+            <column name="active" value="true"/>
+            <column name="last_change" value="now()"/>
+            <column name="company_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="6" author="blackfish">
+        <insert tableName="APP_PAYMENT">
+            <column name="id" value="5"/>
+            <column name="created_at" value="now()"/>
+            <column name="code" value="120D"/>
+            <column name="description" value="120 DIAS"/>
+            <column name="discount_percentage" value="0"/>
+            <column name="active" value="true"/>
+            <column name="last_change" value="now()"/>
+            <column name="company_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="7" author="blackfish">
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="APP_PAYMENT" constraintName="FK_PAYMENT_COMPANY"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="APP_COMPANY"/>
+    </changeSet>
+
+</databaseChangeLog>

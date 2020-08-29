@@ -1,0 +1,36 @@
+<po-page-edit [p-title]="title" (p-save)="save()" (p-cancel)="cancel()" [p-disable-submit]="validate()">
+    <hr>
+    <form [formGroup]="form">
+        <div class="po-row">
+            <po-input id="code" class="po-md-2" name="code" formControlName="code" p-label="Código Interno*" p-clean>
+            </po-input>
+            <po-input id="description" class="po-md-10" name="description" formControlName="description"
+                p-label="Descrição*" p-clean>
+            </po-input>
+        </div>
+        <div class="po-row">
+            <po-input class="po-md-6" name="cpf" formControlName="cpf" p-mask="999.999.999-99" p-label="CPF*" p-clean
+                p-minlength="11">
+            </po-input>
+            <po-password class="po-md-6" name="password" formControlName="password" p-label="Senha*">
+            </po-password>
+        </div>
+        <div class="po-row">
+            <po-email class="po-md-6" name="email" formControlName="email" p-label="E-mail" p-clean>
+            </po-email>
+            <po-input class="po-md-6" name="phone" formControlName="phone" p-label="Telefone*" p-mask="(99) 9?9999-9999"
+                p-clean>
+            </po-input>
+        </div>
+        <hr>
+        <div class="po-row">
+            <po-switch class="po-md-3" name="switch" formControlName="applyDiscount" p-label="Aplica Desconto"
+                p-label-off="Não" p-label-on="Sim">
+            </po-switch>
+            <po-switch class="po-md-3" name="switch" formControlName="active" p-label="Ativo" p-label-off="Não"
+                p-label-on="Sim">
+            </po-switch>
+        </div>
+        <hr>
+    </form>
+</po-page-edit>
