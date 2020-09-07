@@ -15,6 +15,9 @@ export class CompanyViewComponent implements OnInit {
   public obj: Company;
   public currentId: string;
   public showLoading = false;
+  public key = '';
+  private apiUsername: string;
+  private apiPassword: string;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -26,10 +29,16 @@ export class CompanyViewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private companyService: CompanyService,
     private route: Router,
-  ) { }
+  ) {
+    this.apiUsername = localStorage.getItem('username');
+    this.apiPassword = localStorage.getItem('password');
+  }
 
   public ngOnInit() {
     this.obj = new Company();
+
+    this.key = btoa(this.apiUsername + ':' + this.apiPassword);
+
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params) {
         this.title = 'Empresa #'.concat(params.idEmpresa);

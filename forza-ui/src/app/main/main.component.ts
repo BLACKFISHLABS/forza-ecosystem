@@ -13,8 +13,8 @@ export class MainComponent implements OnInit {
 
   public userLogged = JSON.parse(localStorage.getItem('authDetails'));
   public profile = {
-    subtitle: this.userLogged.company.cnpj,
-    title: this.userLogged.company.companyName,
+    subtitle: this.userLogged.company.companyName,
+    title: this.userLogged.company.cnpj,
   };
 
   constructor(
