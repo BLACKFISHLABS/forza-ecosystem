@@ -1,6 +1,7 @@
 <po-page-default>
     <po-breadcrumb [p-items]="breadcrumbItems"></po-breadcrumb>
     <br>
+    <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
     <form [formGroup]="form">
         <div class="po-row">
             <!--

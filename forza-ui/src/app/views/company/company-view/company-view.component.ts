@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumbItem } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Company } from 'src/app/model/company.model';
 import { CompanyService } from 'src/app/services/company.service';
 
@@ -15,6 +14,7 @@ export class CompanyViewComponent implements OnInit {
   public title: string;
   public obj: Company;
   public currentId: string;
+  public showLoading = false;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -25,7 +25,6 @@ export class CompanyViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private companyService: CompanyService,
-    private loader: NgxUiLoaderService,
     private route: Router,
   ) { }
 
@@ -41,12 +40,12 @@ export class CompanyViewComponent implements OnInit {
   }
 
   public view(idCompany: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.companyService.findOne(idCompany).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

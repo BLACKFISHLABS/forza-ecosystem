@@ -1,5 +1,6 @@
 <po-page-edit [p-title]="title" (p-save)="save()" (p-cancel)="cancel()" [p-disable-submit]="validate()">
     <hr>
+    <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
     <form [formGroup]="form">
         <div class="po-row">
             <po-input id="code" class="po-md-2" name="code" formControlName="code" p-label="Código Interno*" p-clean>

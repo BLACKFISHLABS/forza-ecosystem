@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PoBreadcrumbItem, PoTableColumn } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { City } from 'src/app/model/city.model';
 import { CityService } from 'src/app/services/city.service';
 declare var $: any;
@@ -15,6 +14,7 @@ export class CityListComponent implements OnInit {
 
     public citys: City[];
     public form: FormGroup;
+    public showLoading = false;
 
     public breadcrumbItems: Array<PoBreadcrumbItem> = [
         { label: 'Painel', link: '/dashboard' },
@@ -29,7 +29,6 @@ export class CityListComponent implements OnInit {
 
     constructor(
         private cityService: CityService,
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
     ) { }
 
@@ -42,12 +41,12 @@ export class CityListComponent implements OnInit {
     }
 
     public setPage() {
-        this.loader.startBackground();
+        this.showLoading = true;
         this.cityService.getAll().subscribe((response) => {
             this.citys = this.feedTable(response);
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 

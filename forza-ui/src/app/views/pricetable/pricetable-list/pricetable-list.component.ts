@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoBreadcrumbItem, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { PriceTable } from 'src/app/model/price-table.model';
 import { PriceTableService } from 'src/app/services/price-table.service';
 declare var $: any;
@@ -16,6 +15,7 @@ export class PriceTableListComponent implements OnInit {
 
     public prices: PriceTable[];
     public form: FormGroup;
+    public showLoading = false;
 
     public breadcrumbItems: Array<PoBreadcrumbItem> = [
         { label: 'Painel', link: '/dashboard' },
@@ -34,7 +34,6 @@ export class PriceTableListComponent implements OnInit {
 
     constructor(
         private priceTablesService: PriceTableService,
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private router: Router,
     ) { }
@@ -48,16 +47,16 @@ export class PriceTableListComponent implements OnInit {
     }
 
     public setPage() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const cnpj = localStorage.getItem('companyCNPJ');
         const description = this.form.get('description').value || '';
 
         this.priceTablesService.search(cnpj, description).subscribe((res) => {
             this.prices = res;
-            this.loader.stopBackground();
+            this.showLoading = false;
         },
             () => {
-                this.loader.stopBackground();
+                this.showLoading = false;
             },
         );
     }

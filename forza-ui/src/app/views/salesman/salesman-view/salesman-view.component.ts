@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumbItem, PoDialogService } from '@po-ui/ng-components';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SalesMan } from 'src/app/model/salesman.model';
 import { Utils } from 'src/app/model/utils/Utils';
 import { SalesManService } from 'src/app/services/salesman.service';
@@ -18,6 +17,7 @@ export class SalesManViewComponent implements OnInit {
   public obj: SalesMan;
   public currentId: string;
   public utils: Utils = new Utils();
+  public showLoading = false;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -28,7 +28,6 @@ export class SalesManViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private salesManService: SalesManService,
-    private loader: NgxUiLoaderService,
     private router: Router,
     private toast: ToastrService,
     private poAlert: PoDialogService,
@@ -47,12 +46,12 @@ export class SalesManViewComponent implements OnInit {
   }
 
   public view(idProduct: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.salesManService.findOne(idProduct).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

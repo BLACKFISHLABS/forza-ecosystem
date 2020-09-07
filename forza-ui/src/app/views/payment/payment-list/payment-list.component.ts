@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoBreadcrumbItem, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Payment } from 'src/app/model/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 declare var $: any;
@@ -16,6 +15,7 @@ export class PaymentListComponent implements OnInit {
 
     public payments: Payment[];
     public form: FormGroup;
+    public showLoading = false;
 
     public breadcrumbItems: Array<PoBreadcrumbItem> = [
         { label: 'Painel', link: '/dashboard' },
@@ -34,7 +34,6 @@ export class PaymentListComponent implements OnInit {
     ];
 
     constructor(
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private paymentService: PaymentService,
         private router: Router,
@@ -49,15 +48,15 @@ export class PaymentListComponent implements OnInit {
     }
 
     public setPage() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const cnpj = localStorage.getItem('companyCNPJ');
         const description = this.form.get('description').value || '';
 
         this.paymentService.getPaymentByCNPJ(cnpj).subscribe((res) => {
             this.payments = this.feedTable(res);
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 
@@ -71,7 +70,7 @@ export class PaymentListComponent implements OnInit {
     public create() {
         this.router.navigate(['app/payment/new']);
     }
-    
+
     public details(row: Payment) {
         this.router.navigate(['app/payment/view'], { queryParams: { code: row.codigo, idFormPgto: row.idFormPgto } });
     }

@@ -4,10 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Payment } from 'src/app/model/payment.model';
-import { SalesMan } from 'src/app/model/salesman.model';
-import { Vehicle } from 'src/app/model/vehicle.model';
 import { PaymentService } from 'src/app/services/payment.service';
 declare var $: any;
 
@@ -22,11 +19,11 @@ export class PaymentFormComponent implements OnInit {
     public title: string;
     public currentId: string;
     public saveButtonVerify = false;
+    public showLoading = false;
 
     public userLogged = JSON.parse(localStorage.getItem('authDetails'));
 
     constructor(
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private paymentService: PaymentService,
         private activatedRoute: ActivatedRoute,
@@ -56,12 +53,12 @@ export class PaymentFormComponent implements OnInit {
     }
 
     public edit(idFormPgto: number) {
-        this.loader.startBackground();
+        this.showLoading = true;
         this.paymentService.findOne(idFormPgto).subscribe((response) => {
             this.setModel(response);
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 
@@ -73,7 +70,7 @@ export class PaymentFormComponent implements OnInit {
     }
 
     public mountModel() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const payment = new Payment();
         payment.descricao = this.form.get('description').value;
         payment.perDesc = parseFloat(this.form.get('discount').value);
@@ -92,7 +89,7 @@ export class PaymentFormComponent implements OnInit {
             this.paymentService.edit(payment).subscribe(
                 () => {
                     this.toast.success('Forma de Pagamento: ' + payment.descricao + ' - ' + ' editado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListPayment();
                 },
                 (err) => {
@@ -103,7 +100,7 @@ export class PaymentFormComponent implements OnInit {
             this.paymentService.create(payment).subscribe(
                 () => {
                     this.toast.success('Forma de Pagamento: ' + payment.descricao + ' - ' + ' criado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListPayment();
                 },
                 (err) => {
@@ -115,7 +112,7 @@ export class PaymentFormComponent implements OnInit {
 
     public setMessageError(err: any) {
         this.toast.error('Erro ao criar Forma de Pagamento: ' + err.error.message);
-        this.loader.stopBackground();
+        this.showLoading = false;
     }
 
     public cancel() {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumbItem, PoTableColumn, PoDialogService } from '@po-ui/ng-components';
 import 'moment/locale/pt-br';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ItemTabela } from 'src/app/model/item-tabela.model';
 import { PriceTable } from 'src/app/model/price-table.model';
 import { Utils } from 'src/app/model/utils/Utils';
@@ -21,6 +20,7 @@ export class PriceTableViewComponent implements OnInit {
   public obj: PriceTable;
   public currentId: string;
   public utils: Utils = new Utils();
+  public showLoading = false;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -38,7 +38,6 @@ export class PriceTableViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private priceTableService: PriceTableService,
-    private loader: NgxUiLoaderService,
     private router: Router,
     private toast: ToastrService,
     private poAlert: PoDialogService,
@@ -56,12 +55,12 @@ export class PriceTableViewComponent implements OnInit {
   }
 
   public view(idPriceTable: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.priceTableService.findOne(idPriceTable).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

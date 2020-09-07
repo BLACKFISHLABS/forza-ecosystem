@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PoPageLoginLiterals } from '@po-ui/ng-templates';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { first } from 'rxjs/operators';
 import { Login } from 'src/app/model/login.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,6 +15,7 @@ declare var $: any;
 export class LoginPageComponent implements OnInit {
 
     public login = new Login();
+    public showLoading = false;
 
     public customLiterals: PoPageLoginLiterals = {
         attempts: '{0} vez(es) ',
@@ -49,7 +49,6 @@ export class LoginPageComponent implements OnInit {
         private authService: AuthService,
         private toast: ToastrService,
         private router: Router,
-        private loader: NgxUiLoaderService,
     ) { }
 
     public ngOnInit() {
@@ -62,7 +61,7 @@ export class LoginPageComponent implements OnInit {
     }
 
     public loginIn() {
-        this.loader.startBackground();
+        this.showLoading = true;
         this.authService.login(this.login)
             .pipe(first())
             .subscribe(async (response) => {
@@ -81,12 +80,13 @@ export class LoginPageComponent implements OnInit {
 
                     this.router.navigate(['/app/dashboard']);
                     this.toast.success('Seja bem vindo!', 'Olá');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 } else {
                     this.toast.error('login ou senha inválida!');
+                    this.showLoading = false;
                 }
             }, () => {
-                this.loader.stopBackground();
+                this.showLoading = false;
                 this.toast.error('login ou senha inválida!', 'Oops!');
             });
     }

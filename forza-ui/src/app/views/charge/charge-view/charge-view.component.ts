@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumbItem, PoDialogService } from '@po-ui/ng-components';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Charge } from 'src/app/model/charge.model';
 import { Utils } from 'src/app/model/utils/Utils';
 import { ChargeService } from 'src/app/services/charge.service';
@@ -18,6 +17,7 @@ export class ChargeViewComponent implements OnInit {
   public obj: Charge;
   public currentId: string;
   public utils: Utils = new Utils();
+  public showLoading = false;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -28,7 +28,6 @@ export class ChargeViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private chargeService: ChargeService,
-    private loader: NgxUiLoaderService,
     private router: Router,
     private toast: ToastrService,
     private poAlert: PoDialogService,
@@ -46,12 +45,12 @@ export class ChargeViewComponent implements OnInit {
   }
 
   public view(idCharge: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.chargeService.findOne(idCharge).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

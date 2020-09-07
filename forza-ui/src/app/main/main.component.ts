@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PoMenuComponent, PoMenuItem, PoToolbarAction } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +19,6 @@ export class MainComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loader: NgxUiLoaderService,
   ) { }
 
   public profileActions: Array<PoToolbarAction> = [
@@ -134,7 +132,6 @@ export class MainComponent implements OnInit {
   }
 
   public async logout(): Promise<void> {
-    this.loader.startBackground();
     localStorage.removeItem('authenticated');
     localStorage.removeItem('authDetails');
     localStorage.removeItem('companyCNPJ');
@@ -142,7 +139,6 @@ export class MainComponent implements OnInit {
     localStorage.removeItem('username');
 
     this.router.navigate(['login']);
-    this.loader.stopBackground();
 
     const keys = await window.caches.keys();
     await Promise.all(keys.map((key) => caches.delete(key)));

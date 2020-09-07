@@ -1,4 +1,6 @@
 <po-page-default [p-title]="title">
+  <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
+  
   <po-widget class="po-lg-12" p-title="Nome Fantasia">
     <div class="po-font-subtitle">{{obj.nome}}</div>
   </po-widget>

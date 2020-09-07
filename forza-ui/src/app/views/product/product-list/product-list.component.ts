@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoBreadcrumbItem, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Product } from 'src/app/model/product.model';
 import { ProductService } from 'src/app/services/product.service';
 declare var $: any;
@@ -16,6 +15,7 @@ export class ProductListComponent implements OnInit {
 
     public products: Product[];
     public form: FormGroup;
+    public showLoading = false;
 
     public columns: PoTableColumn[] = [
         { property: 'codigo', label: 'Código' },
@@ -36,7 +36,6 @@ export class ProductListComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private router: Router,
     ) { }
@@ -50,15 +49,15 @@ export class ProductListComponent implements OnInit {
     }
 
     public setPage() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const cnpj = localStorage.getItem('companyCNPJ');
         const description = this.form.get('description').value || '';
 
         this.productService.search(cnpj, description).subscribe((res) => {
             this.products = res;
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 

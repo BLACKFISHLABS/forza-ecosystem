@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumbItem, PoTableColumn, PoDialogService } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { RouteCustomer } from 'src/app/model/route-customer.model';
 import { Route } from 'src/app/model/route.model';
 import { Utils } from 'src/app/model/utils/Utils';
@@ -20,6 +19,7 @@ export class RouteViewComponent implements OnInit {
   public customers: RouteCustomer[];
   public currentId: string;
   public utils: Utils = new Utils();
+  public showLoading = false;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -36,7 +36,6 @@ export class RouteViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private routeService: RouteService,
-    private loader: NgxUiLoaderService,
     private router: Router,
     private toast: ToastrService,
     private poAlert: PoDialogService,
@@ -54,12 +53,12 @@ export class RouteViewComponent implements OnInit {
   }
 
   public view(idRoute: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.routeService.findOne(idRoute).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

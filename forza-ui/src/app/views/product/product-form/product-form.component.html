@@ -1,5 +1,6 @@
 <po-page-edit [p-title]="title" (p-cancel)="cancel()">
   <hr>
+  <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
   <form [formGroup]="form">
     <po-tabs>
       <po-tab p-label="Dados" p-active="true">

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PoBreadcrumbItem, PoTableColumn } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { State } from 'src/app/model/state.model';
 import { StateService } from 'src/app/services/state.service';
 declare var $: any;
@@ -14,6 +13,7 @@ declare var $: any;
 export class StateListComponent implements OnInit {
     public states: State[];
     public form: FormGroup;
+    public showLoading = false;
 
     public columns: PoTableColumn[] = [
         { property: 'code', label: 'Código' },
@@ -28,7 +28,6 @@ export class StateListComponent implements OnInit {
 
     constructor(
         private stateService: StateService,
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
     ) { }
 
@@ -40,12 +39,12 @@ export class StateListComponent implements OnInit {
     }
 
     public setPage() {
-        this.loader.startBackground();
+        this.showLoading = true;
         this.stateService.getAll().subscribe((res) => {
             this.states = res;
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 

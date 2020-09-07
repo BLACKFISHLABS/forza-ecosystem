@@ -1,5 +1,6 @@
 <po-page-edit [p-title]="title" (p-save)="save()" (p-cancel)="cancel()" [p-disable-submit]="validate()">
     <hr>
+    <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
     <form [formGroup]="form">
         <div class="po-row">
             <po-input id="document" class="po-md-3" name="cnpj" p-mask="99.999.999/9999-99" formControlName="cnpj"

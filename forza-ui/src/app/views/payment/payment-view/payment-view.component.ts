@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumbItem, PoDialogService } from '@po-ui/ng-components';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Payment } from 'src/app/model/payment.model';
 import { Utils } from 'src/app/model/utils/Utils';
 import { PaymentService } from 'src/app/services/payment.service';
@@ -18,6 +17,7 @@ export class PaymentViewComponent implements OnInit {
   public obj: Payment;
   public currentId: string;
   public utils: Utils = new Utils();
+  public showLoading = false;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -28,7 +28,6 @@ export class PaymentViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private paymentService: PaymentService,
-    private loader: NgxUiLoaderService,
     private route: Router,
     private toast: ToastrService,
     private poAlert: PoDialogService,
@@ -46,12 +45,12 @@ export class PaymentViewComponent implements OnInit {
   }
 
   public view(idPayment: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.paymentService.findOne(idPayment).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

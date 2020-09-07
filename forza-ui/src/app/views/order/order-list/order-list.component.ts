@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoBreadcrumbItem, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Order } from 'src/app/model/order.model';
 import { OrderService } from 'src/app/services/order.service';
 declare var $: any;
@@ -16,6 +15,7 @@ export class OrderListComponent implements OnInit {
 
     public orders: Order[];
     public form: FormGroup;
+    public showLoading = false;
 
     public breadcrumbItems: Array<PoBreadcrumbItem> = [
         { label: 'Painel', link: '/dashboard' },
@@ -45,7 +45,6 @@ export class OrderListComponent implements OnInit {
     ];
 
     constructor(
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private orderService: OrderService,
         private router: Router,
@@ -60,15 +59,15 @@ export class OrderListComponent implements OnInit {
     }
 
     public setPage() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const cnpj = localStorage.getItem('companyCNPJ');
         const description = this.form.get('description').value || '';
 
         this.orderService.searchOrderByFilter(cnpj, description).subscribe((res) => {
             this.orders = this.feedTable(res);
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 

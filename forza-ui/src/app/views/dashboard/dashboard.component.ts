@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DashboardService } from 'src/app/services/dashboard.service';
 declare var $: any;
 
@@ -16,9 +15,9 @@ export class DashboardComponent implements OnInit {
     public products: number;
     public sales: number;
     public salesman: number;
+    public showLoading = false;
 
     constructor(
-        private loader: NgxUiLoaderService,
         private dashboardService: DashboardService,
         private router: Router,
     ) { }
@@ -28,14 +27,14 @@ export class DashboardComponent implements OnInit {
     }
 
     public async setDashboard() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const cnpj = localStorage.getItem('companyCNPJ');
         const dashboard = await this.dashboardService.calculateDashboard(cnpj).toPromise();
         this.customers = dashboard.customers;
         this.sales = dashboard.sales;
         this.salesman = dashboard.salesman;
         this.products = dashboard.products;
-        this.loader.stopBackground();
+        this.showLoading = false;
     }
 
     public openCustomers() {

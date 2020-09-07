@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SalesMan } from 'src/app/model/salesman.model';
 import { Vehicle } from 'src/app/model/vehicle.model';
 import { VehicleService } from 'src/app/services/vehicle.service';
@@ -21,9 +20,9 @@ export class ChargeFormComponent implements OnInit {
     public currentId: string;
     public saveButtonVerify = false;
     public globalDriveSalesMan: SalesMan[];
+    public showLoading = false;
 
     constructor(
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private vehicleService: VehicleService,
         private activatedRoute: ActivatedRoute,
@@ -50,15 +49,15 @@ export class ChargeFormComponent implements OnInit {
     }
 
     public edit(idVehicle: number) {
-        this.loader.startBackground();
+        this.showLoading = true;
         this.vehicleService.findOne(idVehicle).subscribe((response) => {
             this.form.get('description').setValue(response.description);
             this.form.get('plate').setValue(response.plate);
             this.form.get('driveSalesman').setValue(this.setDriveSalesMans(response.Vendedor));
             this.globalDriveSalesMan = response.Vendedor;
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 
@@ -79,7 +78,7 @@ export class ChargeFormComponent implements OnInit {
     }
 
     public mountModel() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const vehicle = new Vehicle();
         vehicle.description = this.form.get('description').value;
         vehicle.plate = this.form.get('plate').value;
@@ -97,24 +96,24 @@ export class ChargeFormComponent implements OnInit {
             this.vehicleService.edit(vehicle).subscribe(
                 () => {
                     this.toast.success('Veículo: ' + vehicle.description + ' - ' + ' editado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListVehicle();
                 },
                 (err) => {
                     this.toast.error('Erro ao criar veículo: ' + err.error.message);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
             );
         } else {
             this.vehicleService.create(vehicle).subscribe(
                 () => {
                     this.toast.success('Veículo: ' + vehicle.description + ' - ' + ' criado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListVehicle();
                 },
                 (err) => {
                     this.toast.error('Erro ao criar veículo: ' + err.error.message);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
             );
         }

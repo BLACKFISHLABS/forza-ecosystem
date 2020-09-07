@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoBreadcrumbItem, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Customer } from 'src/app/model/customer.model';
 import { CustomerService } from 'src/app/services/customer.service';
 declare var $: any;
@@ -17,6 +16,7 @@ export class CustomerListComponent implements OnInit {
     public customers: Customer[];
     public form: FormGroup;
     public moreResults: boolean;
+    public showLoading = false;
 
     public breadcrumbItems: Array<PoBreadcrumbItem> = [
         { label: 'Painel', link: '/dashboard' },
@@ -35,7 +35,6 @@ export class CustomerListComponent implements OnInit {
     ];
 
     constructor(
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private customerService: CustomerService,
         private router: Router,
@@ -52,15 +51,15 @@ export class CustomerListComponent implements OnInit {
     }
 
     public setPage() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const cnpj = localStorage.getItem('companyCNPJ');
         const description = this.form.get('description').value || '';
 
         this.customerService.searchCustomerByFilter(cnpj, description, '').subscribe((res) => {
             this.customers = res;
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 

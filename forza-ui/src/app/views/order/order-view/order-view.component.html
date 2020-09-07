@@ -1,4 +1,5 @@
 <po-page-default [p-title]="title">
+  <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
   <po-tabs>
     <po-tab p-label="Dados" p-active="true">
       <po-widget class="po-lg-3" p-title="Tipo">

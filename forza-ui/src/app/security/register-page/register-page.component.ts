@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoPageEditLiterals } from '@po-ui/ng-components';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Address } from 'src/app/model/adress.model';
 import { City } from 'src/app/model/city.model';
 import { Company } from 'src/app/model/company.model';
@@ -30,6 +29,7 @@ export class RegisterPageComponent implements OnInit {
     public globalReceita: DadosReceita;
     public globalViaCEP: ViaCEP;
     public loadingCNPJ = false;
+    public showLoading = false;
 
     public customLiterals: PoPageEditLiterals = {
         cancel: 'Voltar',
@@ -39,7 +39,6 @@ export class RegisterPageComponent implements OnInit {
     constructor(
         private toast: ToastrService,
         private router: Router,
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private receitaService: ReceitaService,
         private companyService: CompanyService,
@@ -65,7 +64,7 @@ export class RegisterPageComponent implements OnInit {
 
         if (!cnpj) {
             this.toast.error('Passe o numero do cnpj valido para pesquisar!');
-            this.loader.stopBackground();
+            this.showLoading = false;
             return;
         }
 
@@ -75,7 +74,7 @@ export class RegisterPageComponent implements OnInit {
                 this.fantasyName = receita.fantasia;
                 this.street = receita.logradouro.concat(', ').concat(receita.numero).concat(', ').concat(receita.bairro);
                 this.city = receita.cep.concat(' - ').concat(receita.municipio).concat(' - ').concat(receita.bairro);
-                this.loader.stopBackground();
+                this.showLoading = false;
                 $('#CNPJInfo').show();
                 this.loadingCNPJ = false;
             } else {
@@ -83,24 +82,24 @@ export class RegisterPageComponent implements OnInit {
                 this.loadingCNPJ = false;
             }
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
             this.loadingCNPJ = false;
         });
     }
 
     public async save() {
         if (this.globalReceita && this.form.valid) {
-            this.loader.startBackground();
+            this.showLoading = true;
             const company = await this.mountModel();
             this.companyService.create(company).subscribe(
                 () => {
                     this.toast.success('Empresa: ' + company.companyName + ' - ' + ' registrado com sucesso!');
                     this.goRegisterUser(company.cnpj);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
                 (err) => {
                     this.toast.error('Erro ao cadastrar empresa: ' + err.error.message);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
             );
         } else {
@@ -113,7 +112,7 @@ export class RegisterPageComponent implements OnInit {
     }
 
     public async mountModel() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const company = new Company();
         company.nome = this.globalReceita.fantasia;
         company.companyName = this.globalReceita.nome;

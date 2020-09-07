@@ -3,7 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoBreadcrumbItem, PoDialogService } from '@po-ui/ng-components';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Customer } from 'src/app/model/customer.model';
 import { Utils } from 'src/app/model/utils/Utils';
 import { CustomerService } from 'src/app/services/customer.service';
@@ -20,6 +19,7 @@ export class CustomerViewComponent implements OnInit {
   public form: FormGroup;
   public currentId: string;
   public utils: Utils = new Utils();
+  public showLoading = false;
 
   public breadcrumbItems: Array<PoBreadcrumbItem> = [
     { label: 'Painel', link: '/dashboard' },
@@ -30,7 +30,6 @@ export class CustomerViewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService,
-    private loader: NgxUiLoaderService,
     private router: Router,
     private toast: ToastrService,
     private poAlert: PoDialogService,
@@ -48,12 +47,12 @@ export class CustomerViewComponent implements OnInit {
   }
 
   public view(idPriceTable: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.customerService.findOne(idPriceTable).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

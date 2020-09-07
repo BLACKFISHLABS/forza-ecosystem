@@ -1,5 +1,6 @@
 <po-page-edit p-title="Cadastro de Nova Empresa" (p-save)="save()" (p-cancel)="cancel()" [p-literals]="customLiterals">
     <po-divider></po-divider>
+    <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
     <div class="po-row">
         <po-widget class="po-md-6 po-mb-5">
             <div class="po-font-title po-text-left">
@@ -48,4 +49,3 @@
         </po-widget>
     </div>
 </po-page-edit>
-<ngx-ui-loader></ngx-ui-loader>

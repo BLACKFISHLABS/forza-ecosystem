@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SalesMan } from 'src/app/model/salesman.model';
 import { Vehicle } from 'src/app/model/vehicle.model';
 import { SalesManService } from 'src/app/services/salesman.service';
@@ -25,9 +24,9 @@ export class VehicleFormComponent implements OnInit {
     public currentId: string;
     public saveButtonVerify = false;
     public salesmanSelected: SalesMan;
+    public showLoading = false;
 
     constructor(
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private vehicleService: VehicleService,
         private salesmanService: SalesManService,
@@ -56,12 +55,12 @@ export class VehicleFormComponent implements OnInit {
     }
 
     public edit(idVehicle: number) {
-        this.loader.startBackground();
+        this.showLoading = true;
         this.vehicleService.findOne(idVehicle).subscribe((response) => {
             this.setModel(response);
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 
@@ -81,7 +80,7 @@ export class VehicleFormComponent implements OnInit {
     }
 
     public mountModel() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const vehicle = new Vehicle();
         vehicle.description = this.form.get('description').value;
         vehicle.plate = this.form.get('plate').value;
@@ -98,24 +97,24 @@ export class VehicleFormComponent implements OnInit {
             this.vehicleService.edit(vehicle).subscribe(
                 () => {
                     this.toast.success('Veículo: ' + vehicle.description + ' - ' + ' editado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListVehicle();
                 },
                 (err) => {
                     this.toast.error('Erro ao criar veículo: ' + err.error.message);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
             );
         } else {
             this.vehicleService.create(vehicle).subscribe(
                 () => {
                     this.toast.success('Veículo: ' + vehicle.description + ' - ' + ' criado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListVehicle();
                 },
                 (err) => {
                     this.toast.error('Erro ao criar veículo: ' + err.error.message);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
             );
         }

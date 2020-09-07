@@ -1,6 +1,7 @@
 <po-page-default>
     <h1 class="po-page-header-title">Painel de Informações</h1>
     <hr>
+    <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
     <div class="po-row">
         <po-widget class="po-lg-12 po-mb-1">
             <div class="po-font-title po-text-left">{{ myDate | date:'fullDate' }}</div>

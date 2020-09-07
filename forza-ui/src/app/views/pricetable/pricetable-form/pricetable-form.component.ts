@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Product } from 'src/app/model/product.model';
 import { Utils } from 'src/app/model/utils/Utils';
 import { ProductService } from 'src/app/services/product.service';
@@ -18,11 +17,11 @@ export class PriceTableFormComponent implements OnInit {
   public form: FormGroup;
   public currentId: string;
   public utils: Utils = new Utils();
+  public showLoading = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private loader: NgxUiLoaderService,
     private formBuilder: FormBuilder,
     private router: Router,
   ) { }
@@ -51,12 +50,12 @@ export class PriceTableFormComponent implements OnInit {
   }
 
   public view(idProduct: string) {
-    this.loader.startBackground();
+    this.showLoading = true;
     this.productService.findOne(idProduct).subscribe((response) => {
       this.setModel(response);
-      this.loader.stopBackground();
+      this.showLoading = false;
     }, () => {
-      this.loader.stopBackground();
+      this.showLoading = false;
     });
   }
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SalesMan } from 'src/app/model/salesman.model';
 import { SalesManService } from 'src/app/services/salesman.service';
 declare var $: any;
@@ -18,11 +17,11 @@ export class SalesManFormComponent implements OnInit {
     public title: string;
     public currentId: string;
     public saveButtonVerify = false;
+    public showLoading = false;
 
     public userLogged = JSON.parse(localStorage.getItem('authDetails'));
 
     constructor(
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private salesmanService: SalesManService,
         private activatedRoute: ActivatedRoute,
@@ -57,7 +56,7 @@ export class SalesManFormComponent implements OnInit {
     }
 
     public edit(idSalesman: number) {
-        this.loader.startBackground();
+        this.showLoading = true;
         this.salesmanService.findOne(idSalesman).subscribe((response) => {
             this.form.get('code').setValue(response.codigo);
             this.form.get('description').setValue(response.nome);
@@ -69,9 +68,9 @@ export class SalesManFormComponent implements OnInit {
             this.form.get('applyDiscount').setValue(response.aplicaDesconto);
             this.form.get('active').setValue(response.ativo);
 
-            this.loader.stopBackground();
+            this.showLoading = false;
         }, () => {
-            this.loader.stopBackground();
+            this.showLoading = false;
         });
     }
 
@@ -84,7 +83,7 @@ export class SalesManFormComponent implements OnInit {
     }
 
     public mountModel() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const salesman = new SalesMan();
         salesman.codigo = this.form.get('code').value;
         salesman.nome = this.form.get('description').value;
@@ -108,24 +107,24 @@ export class SalesManFormComponent implements OnInit {
             this.salesmanService.edit(salesman).subscribe(
                 () => {
                     this.toast.success('Vendedor: ' + salesman.nome + ' - ' + ' editado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListSalesman();
                 },
                 (err) => {
                     this.toast.error('Erro ao editar vendedor: ' + err.error.message);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
             );
         } else {
             this.salesmanService.create(salesman).subscribe(
                 () => {
                     this.toast.success('Vendedor: ' + salesman.nome + ' - ' + ' criado com sucesso!');
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                     this.returnListSalesman();
                 },
                 (err) => {
                     this.toast.error('Erro ao criar vendedor: ' + err.error.message);
-                    this.loader.stopBackground();
+                    this.showLoading = false;
                 },
             );
         }

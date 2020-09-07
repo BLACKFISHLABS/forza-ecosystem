@@ -1,5 +1,6 @@
 <po-page-edit p-title="Novo Usuário (Gerente)" (p-save)="save()" (p-cancel)="cancel()">
     <po-divider></po-divider>
+    <po-loading-overlay *ngIf="showLoading"></po-loading-overlay>
     <form [formGroup]="form">
         <div class="po-row">
             <po-input class="po-sm-6" name="firstName" formControlName="firstName" p-label="Primeiro Nome" p-clean
@@ -34,4 +35,3 @@
         </div>
     </form>
 </po-page-edit>
-<ngx-ui-loader></ngx-ui-loader>

@@ -2,4 +2,5 @@
   p-secondary-logo="../../../assets/logo.png" p-environment="© 2020 - BLACKFISH LABS" p-hide-remember-user="true"
   p-background="../../../assets/wall.jpg" [p-literals]="customLiterals">
 </po-page-login>
-<ngx-ui-loader></ngx-ui-loader>
+
+<po-loading-overlay *ngIf="showLoading"></po-loading-overlay>

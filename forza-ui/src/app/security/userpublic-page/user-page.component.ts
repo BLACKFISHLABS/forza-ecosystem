@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Company } from 'src/app/model/company.model';
 import { Profile } from 'src/app/model/profile.model';
 import { User } from 'src/app/model/user.model';
@@ -25,11 +24,11 @@ export class UserPublicComponent implements OnInit {
     public globalCompany: Company;
     public firstNameDisable: boolean;
     public secondNameDisable: boolean;
+    public showLoading = false;
 
     constructor(
         private toast: ToastrService,
         private router: Router,
-        private loader: NgxUiLoaderService,
         private formBuilder: FormBuilder,
         private userService: UserService,
         private activatedRoute: ActivatedRoute,
@@ -88,12 +87,12 @@ export class UserPublicComponent implements OnInit {
         }
     }
     public save() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const user = this.mountModel();
         this.userService.create(user).subscribe(
             () => {
                 this.toast.success('Usuário: ' + user.email + ' - ' + ' registrado com sucesso!');
-                this.loader.stopBackground();
+                this.showLoading = false;
                 this.returnLogin();
             },
             (error) => {
@@ -103,7 +102,7 @@ export class UserPublicComponent implements OnInit {
                 } else {
                     this.toast.error('Erro ao cadastrar usuário: ' + error.error.message);
                 }
-                this.loader.stopBackground();
+                this.showLoading = false;
             },
         );
     }
@@ -117,7 +116,7 @@ export class UserPublicComponent implements OnInit {
     }
 
     public mountModel() {
-        this.loader.startBackground();
+        this.showLoading = true;
         const user = new User();
 
         user.profiles = this.getDefaultProfile();
