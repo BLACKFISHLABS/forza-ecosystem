@@ -34,10 +34,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authProvider());
     }
 
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedSlash(true);
+        return firewall;
+    }
+
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/resources/**");
-        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
+        web.ignoring().antMatchers("/resources/**")
+                .and().httpFirewall(allowUrlEncodedSlashHttpFirewall());
     }
 
     @Bean
@@ -89,13 +96,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
-    }
-
-    @Bean
-    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowUrlEncodedSlash(true);
-        return firewall;
     }
 
 }
