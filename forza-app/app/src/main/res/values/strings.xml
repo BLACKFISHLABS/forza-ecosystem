@@ -41,7 +41,7 @@
         Endereço web do servidor para troca de dados
     </string>
     <string name="settings_server_address_preference_default_value" translatable="false">
-        http://157.245.168.143:5000
+        http://192.168.0.105:5050
     </string>
 
     <string name="settings_auth_key_preference_key" translatable="false">auth_key</string>

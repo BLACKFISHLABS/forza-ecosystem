@@ -8,8 +8,8 @@ android {
         minSdkVersion 22
         //noinspection OldTargetApi
         targetSdkVersion 29
-        versionCode 33
-        versionName "1.3.3"
+        versionCode 50
+        versionName "1.5.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -57,7 +57,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-core:17.5.0'
+    implementation 'com.google.firebase:firebase-core:18.0.3'
     // Guava
     implementation "com.google.guava:guava:24.1-jre"
     // Picasso
@@ -111,7 +111,7 @@ dependencies {
     // MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
     // Location
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
     // GCM
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
     // Dexter runtime permissions
@@ -122,4 +122,4 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.0.7'
 }
 
-apply plugin: 'com.google.gms.google-services'
+// apply plugin: 'com.google.gms.google-services'

@@ -47,10 +47,10 @@
             <column name="email" value="dev.blackfishlabs@gmail.com"/>
             <column name="first_name" value="Jeferson"/>
             <column name="last_name" value="Cruz"/>
-            <column name="password" value="$2a$11$v/kqFv.GaEvBvWugUclT4ekylQi511GGMslROXetZWPGnNv7vs7O6"/>
+            <column name="password" value="$2a$11$7Oh01QCNHkcVKirHZes4H.LpG1LclbG0KyqQ/OwosQj3vnNcMre7i"/>
             <column name="state" value="Active"/>
             <column name="company_id" value="1"/>
-            <column name="api_key" value="YWRtaW46YmxhY2tmaXNoQGxhYnM="/>
+            <column name="api_key" value="YWRtaW46YWRtaW4="/>
         </insert>
     </changeSet>
 
