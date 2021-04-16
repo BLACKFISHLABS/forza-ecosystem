@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
@@ -237,7 +238,7 @@ public class ImportResumeActivity extends BaseActivity {
                                     e.printStackTrace();
                                 }
 
-                                Gson gson = new Gson();
+                                Gson gson = new GsonBuilder().setLenient().create();
                                 Type empMapType = new TypeToken<Map<String, Object>>() {
                                 }.getType();
                                 Map<String, Object> map = gson.fromJson(json, empMapType);

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import androidx.core.util.Pair;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import io.github.blackfishlabs.forza.R;
 import io.github.blackfishlabs.forza.domain.pojo.Company;
@@ -33,7 +34,7 @@ public class SettingsRepositoryImpl implements SettingsRepository {
     public SettingsRepositoryImpl(final Context context) {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         mContext = context;
-        mGson = new Gson();
+        mGson = new GsonBuilder().setLenient().create();
     }
 
     @Override
